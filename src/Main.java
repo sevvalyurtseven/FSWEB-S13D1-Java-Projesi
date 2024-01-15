@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     // NOT: main methodun oldugu yerden proje baslar!
     public static void main(String[] args) {
@@ -23,6 +25,24 @@ public class Main {
         System.out.println("Oyuncu Kedi: " + isCatPlaying2(true, 10));
         System.out.println("Oyuncu Kedi: " + isCatPlaying2(false, 36));
         System.out.println("Oyuncu Kedi: " + isCatPlaying2(false, 35));
+
+        //NOT: SCANNER METHODU input değerini kullanıcıdan alır!
+
+        //NOT: scanner.nextDouble = İlgili satırda enter'a basana kadar değer bekler. O değeri girdiğimizde
+        // 2. kısma gelir ve 2. değeri bekler. 2 değer girildikten sonra area methoduyla hesaplamayı
+        // yapıp console'a basar.
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter width of rectangle: ");
+        double width = scanner.nextDouble();
+        System.out.println("Enter height of rectangle: ");
+        double height = scanner.nextDouble();
+        System.out.println("Area of rectangle: " + area(height, width));
+
+        System.out.println("Enter radius: ");
+        double radius = scanner.nextDouble();
+        System.out.println("Area of circle: " + area(radius));
+
     }
 
     // NOT: Metodumuzu statik bir main metodunun icinde cagirabilmek icin statik yazmaliyiz.
@@ -72,5 +92,23 @@ public class Main {
     public static boolean isCatPlaying2 (boolean isSummer, int temperature){
         int limit = isSummer ? 45 : 35;
         return temperature > 25 && temperature <= limit;
+    }
+
+    //ALAN HESAPLAMA ÇÖZÜM:
+
+    public static double area (double height, double width){
+        if(width <0 || height <0){
+            System.out.println("Width ve Height değeri 0'dan küçük olamaz!");
+            return -1;
+        }
+        return width * height;
+    }
+    //NOT: Burada ayni methodu farklı şekilde kullandık. Buna Overload denir!
+    public static double area(double radius){
+        if (radius <0){
+            System.out.println("Radius değeri 0'dan küçük olamaz! radius parametre=" + radius);
+            return -1;
+        }
+        return Math.PI* Math.pow(radius, 2);
     }
 }
